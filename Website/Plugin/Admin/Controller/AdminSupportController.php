@@ -1,0 +1,91 @@
+<?php
+/**
+ * PHP version 5
+ * 
+ * Licensed under The MIT License
+ * Redistributions of files must retain the above copyright notice.
+ * 
+ * @author   Bui Thanh Cong <buithanhcong.nd@gmail.com>
+ * @license  MIT License (http://www.opensource.org/licenses/mit-license.php)
+ */
+
+class AdminSupportController extends AdminAppController {
+
+    public $uses = array('Support');
+
+    public function support_index($type = null) {
+        $this->autoRender = false;
+    }
+
+    public function support_list() {
+        $this->paginate = array(
+            'limit' => 12,
+            'order' => 'Support.pos DESC, Support.id DESC'
+        );
+
+        $this->data = $this->paginate('Support');
+    }
+
+    public function support_add() {
+        if ($this->data) {
+            $data = $this->data['Support'];
+            $data['image'] = $this->remove_hostname($data['image']);
+
+            if(isset($data['category_id']) && $data['category_id'] == "")
+                $data['category_id'] = 0;
+
+            $this->Support->save($data);
+            $id = $this->Support->getLastInsertID();
+            $this->Session->setFlash('Đã thêm mới', 'success');
+            $this->redirect($this->get_redirect('support', 'add', $id)); die;
+        }
+    }
+
+    public function support_edit($id = null) {
+        if ($this->data) {
+            $data = $this->data['Support'];
+            $data['image'] = $this->remove_hostname($data['image']);
+
+            if(isset($data['category_id']) && $data['category_id'] == "")
+                $data['category_id'] = 0;
+                
+            $this->Support->id = $id;
+            $this->Support->save($data);
+            $this->Session->setFlash('Đã sửa', 'success');
+            $this->redirect($this->get_redirect('support', 'edit', $id)); die;
+        }
+
+        $this->data = $this->Support->findById($id);
+    }
+
+    public function save_pos() {
+        $vitri = $_POST['pos'];
+        foreach ($vitri as $k => $v) {
+            if ($v == "") {
+                $v = 0;
+            }
+            $this->Support->updateAll(
+                    array(
+                'Support.pos' => $v,
+                    ), array(
+                'Support.id' => $k
+                    )
+            );
+        }
+
+        $this->redirect($this->referer());
+    }
+
+    public function support_delete($id = null) {
+        $this->autoRender = false;
+        $redirect_page = isset($_GET['rp']) && $_GET['rp'] > 1 ? 'page:' . $_GET['rp'] : '';
+        $redirect_list = DOMAINAD . 'admin_support/support_list/' . $redirect_page;
+
+        $this->Support->id = $id;
+        $this->Support->delete($id);
+
+        $this->Session->setFlash('Đã xóa', 'success');
+        $this->redirect($redirect_list);
+    }
+
+}

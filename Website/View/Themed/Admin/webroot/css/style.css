@@ -1,0 +1,23 @@
+.main .navbar .nav li a {padding: 0 0 0 15px;}
+#flashMessage {font-weight: bold; font-color: #ff0000;}
+.pagination span {border: 1px solid #ccc; padding: 3px 8px; margin: 0 3px;}
+.pagination span.current {background: #00f; border: 1px solid #00f; color: #fff; font-weight: bold;}
+.block-color {display: block; width: 30px; height: 30px;}
+.block-color-small {display: block; width: 18px; height: 18px; float: left; font-style: italic;}
+
+.control-group .span12 {margin-left: 0;}
+.SeoStatus {font-style: italic; color: #ccc; padding-left: 20px;}
+.valid-seo {font-weight: bold; color: #009900;font-size: 15px;}
+
+.news_content_workspace .span1 {width: 10% !important; text-align: right;}
+.delete_this_img {cursor: pointer;}
+#btn-filter {margin-bottom: 10px;}
+
+.icon-en {width: 18px; height: 12px; background: url('../img/en.png') center center;}
+.icon-vi {width: 17px; height: 12px; background: url('../img/vi.png') center center;}
+.icon-fr {width: 17px; height: 12px; background: url('../img/fr.png') center center;}
+
+.lang {margin: 10px 0;}
+.lang a {text-decoration: none; color: #333; padding-right: 15px;}
+.lang a:hover {color: #ff0000;}
+.lang a.active {color: #0066cc; font-weight: bold;}

@@ -1,0 +1,8 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_URI} !^/(thumb) [NC]
+    #RewriteRule ^thumb/(.*)x(.*)/(.*) timthumb.php?src=/vncdata/$3&w=$1&h=$2&zc=1&q=100&a=tl
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>

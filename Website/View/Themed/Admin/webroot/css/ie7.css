@@ -1,0 +1,21 @@
+﻿.md-overlay {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
+}
+
+.mainNavigationUl li {
+    z-index: 800;
+}
+
+.mainNavigationUl li ul{
+    z-index: 500;
+    top: 30px;
+    width: 300px;
+}
+.mainNavigationUl li ul li {
+    float: left;
+}
+.mainNavigationUl li a{ text-decoration: none; cursor: pointer}
+.askModal .md-modal {
+    top: 10%;
+}
